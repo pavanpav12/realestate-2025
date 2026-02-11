@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly Real Estate</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ---------- RESET ---------- */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+overflow-x:hidden;
+}
+
+/* ---------- NAVBAR ---------- */
+
+:root{
+--header-height:90px;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:var(--header-height);
+padding:0 60px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:999;
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(10px);
+transition:0.3s;
+}
+
+
+/* LOGO */
+.logo{
+color:#fff;
+font-size:26px;
+font-weight:700;
+letter-spacing:2px;
+}
+.logo{
+display:flex;
+align-items:center;
+}
+
+.logo img{
+height:150px;
+width:auto;
+object-fit:contain;
+filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+transition:0.4s;
+}
+
+.logo img:hover{
+transform:scale(1.08);
+}
+
+/* NAV LINKS */
+nav ul{
+display:flex;
+gap:40px;
+list-style:none;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-weight:500;
+position:relative;
+}
+
+nav ul li a::after{
+content:'';
+position:absolute;
+bottom:-6px;
+left:0;
+width:0%;
+height:2px;
+background:#f7c873;
+transition:0.4s;
+}
+
+nav ul li a:hover::after{
+width:100%;
+}
+
+/* CONTACT BUTTON */
+.contact-btn{
+padding:12px 26px;
+background:linear-gradient(135deg,#f7c873,#e0a43c);
+border-radius:40px;
+color:black;
+font-weight:600;
+text-decoration:none;
+transition:0.4s;
+}
+
+.contact-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 8px 25px rgba(247,200,115,0.6);
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+height:100vh;
+background:url('home5.webp') center/cover no-repeat;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+position:relative;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(to bottom,rgba(0,0,0,0.55),rgba(0,0,0,0.75));
+}
+
+/* HERO CONTENT */
+.hero-content{
+position:relative;
+max-width:850px;
+}
+
+/* SCHITTS CREEK STYLE TITLE */
+.hero h1{
+font-size:70px;
+font-weight:700;
+letter-spacing:4px;
+text-transform:uppercase;
+overflow:hidden;
+white-space:nowrap;
+border-right:3px solid #f7c873;
+width:0;
+animation:typing 4s steps(30,end) forwards, blink 0.7s infinite;
+}
+
+@keyframes typing{
+to{width:100%;}
+}
+
+@keyframes blink{
+50%{border-color:transparent;}
+}
+
+/* PARAGRAPH */
+.hero p{
+margin-top:25px;
+font-size:18px;
+line-height:1.7;
+opacity:0;
+animation:fadeUp 2s ease forwards;
+animation-delay:4.2s;
+}
+
+@keyframes fadeUp{
+from{transform:translateY(40px);opacity:0;}
+to{transform:translateY(0);opacity:1;}
+}
+
+/* BUTTONS */
+
+.hero-buttons{
+margin-top:40px;
+display:flex;
+justify-content:center;
+gap:25px;
+opacity:0;
+animation:fadeUp 2s ease forwards;
+animation-delay:4.5s;
+}
+
+.btn{
+padding:14px 34px;
+border-radius:50px;
+text-decoration:none;
+font-weight:600;
+position:relative;
+overflow:hidden;
+}
+
+/* SERVICES BUTTON */
+.btn-primary{
+background:linear-gradient(135deg,#f7c873,#e0a43c);
+color:black;
+}
+
+.btn-primary::before{
+content:'';
+position:absolute;
+width:0;
+height:100%;
+left:0;
+top:0;
+background:white;
+opacity:0.25;
+transition:0.5s;
+}
+
+.btn-primary:hover::before{
+width:100%;
+}
+
+/* CONTACT BUTTON OUTLINE */
+.btn-outline{
+border:2px solid #fff;
+color:white;
+}
+
+.btn-outline:hover{
+background:white;
+color:black;
+}
+
+/* ---------- HAMBURGER ---------- */
+
+.hamburger{
+display:none;
+flex-direction:column;
+cursor:pointer;
+gap:6px;
+}
+
+.hamburger span{
+width:28px;
+height:3px;
+background:white;
+transition:0.4s;
+}
+
+/* FULLSCREEN MOBILE MENU */
+
+.mobile-menu{
+position:fixed;
+inset:0;
+background:#0c0f14;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:35px;
+transform:translateY(-100%);
+transition:0.6s ease;
+z-index:998;
+}
+
+.mobile-menu a{
+color:white;
+font-size:26px;
+text-decoration:none;
+}
+/* ==============================
+   STACKLY ABOUT SECTION
+   ============================== */
+
+#stackly-about{
+background:white;
+padding:120px 20px;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+#stackly-about .about-container{
+max-width:850px;
+}
+
+/* SCHITTS CREEK TITLE EFFECT */
+#stackly-about .about-title{
+font-size:42px;
+font-weight:700;
+letter-spacing:3px;
+text-transform:uppercase;
+color:#111;
+overflow:hidden;
+white-space:nowrap;
+border-right:3px solid #e0a43c;
+width:0;
+margin:auto;
+animation:aboutTyping 3.5s steps(30,end) forwards, aboutBlink .7s infinite;
+}
+
+/* cursor blink */
+@keyframes aboutBlink{
+50%{border-color:transparent;}
+}
+
+/* typing */
+@keyframes aboutTyping{
+to{width:100%;}
+}
+
+/* paragraph */
+#stackly-about .about-text{
+margin-top:30px;
+font-size:18px;
+line-height:1.8;
+color:#555;
+opacity:0;
+transform:translateY(40px);
+animation:aboutFade 1.6s ease forwards;
+animation-delay:3.6s;
+}
+
+@keyframes aboutFade{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* MOBILE FIX */
+@media(max-width:900px){
+
+#stackly-about .about-title{
+font-size:28px;
+white-space:normal;
+border-right:none;
+animation:aboutFade 1.5s forwards;
+width:100%;
+}
+
+}
+
+/* ACTIVE MENU */
+.mobile-menu.active{
+transform:translateY(0);
+}
+
+/* ANIMATE HAMBURGER */
+.hamburger.active span:nth-child(1){
+transform:rotate(45deg) translate(6px,6px);
+}
+
+.hamburger.active span:nth-child(2){
+opacity:0;
+}
+
+.hamburger.active span:nth-child(3){
+transform:rotate(-45deg) translate(6px,-6px);
+}
+
+/* ---------- ABOUT SECTION ---------- */
+
+.about{
+background:white;
+padding:100px 20px;
+text-align:center;
+}
+
+.about h2{
+font-size:38px;
+margin-bottom:20px;
+}
+
+.about p{
+max-width:750px;
+margin:auto;
+line-height:1.8;
+color:#555;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:900px){
+
+nav ul,
+.contact-btn{
+display:none;
+}
+
+.hamburger{
+display:flex;
+}
+
+.hero h1{
+font-size:40px;
+white-space:normal;
+border-right:none;
+animation:fadeUp 2s forwards;
+width:100%;
+}
+
+.hero-buttons{
+flex-direction:column;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+<a href="404.html">Home</a>
+<a href="404.html">Services</a>
+<a href="404.html">About</a>
+<a href="404.html">Contact</a>
+</div>
+
+<header>
+<div class="logo">
+    <img src="stacklylogo (2).webp" alt="Stackly Real Estate Logo">
+</div>
+
+
+<nav>
+<ul>
+<li><a href="404.html">Home</a></li>
+<li><a href="404.html">Services</a></li>
+<li><a href="404.html">About</a></li>
+</ul>
+</nav>
+
+<a href="404.html" class="contact-btn">Contact Us</a>
+
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<h1>Stackly Real Estate</h1>
+
+<p>
+Discover premium homes, luxury villas and modern apartments.
+We help you find not just a property — but a lifestyle and a future investment.
+</p>
+
+<div class="hero-buttons">
+<a href="404.html" class="btn btn-primary">Services</a>
+<a href="404.html" class="btn btn-outline">Contact Us</a>
+</div>
+</div>
+</section>
+
+<!-- ABOUT / COMPANY DETAILS -->
+<section id="stackly-about">
+    <div class="about-container">
+
+        <h2 class="about-title">Established Since 2010</h2>
+
+        <p class="about-text">
+        Stackly Real Estate has been delivering trusted property solutions for over a decade.
+        From luxury villas to commercial investments, we guide clients with transparency,
+        market expertise, and long-term value planning. Our mission is to turn your dream
+        property into a smart lifetime asset.
+        </p>
+
+    </div>
+</section>
+
+
+<script>
+
+/* HAMBURGER TOGGLE */
+
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+
+hamburger.onclick = () => {
+hamburger.classList.toggle("active");
+mobileMenu.classList.toggle("active");
+};
+
+</script>
+
+</body>
+</html>
+<!-- ================= PROPERTY SHOWCASE SECTION ================= -->
+
+<section id="stackly-showcase">
+
+    <div class="showcase-wrapper">
+
+        <div class="showcase-text left-text">
+            <h4>BOLD CHOICES</h4>
+        </div>
+
+        <!-- IMAGES -->
+        <div class="showcase-gallery">
+
+            <img src="home6.webp" class="showcase-img left">
+
+            <img src="home8.webp" class="showcase-img center">
+
+            <img src="home6.webp" class="showcase-img right">
+
+        </div>
+
+        <div class="showcase-text right-text">
+            <h4>CALM SPACES</h4>
+        </div>
+
+    </div>
+
+    <!-- PROPERTY FEATURES -->
+    <div class="property-info">
+
+        <div class="info-box">
+            <h3>2450</h3>
+            <span>Sq. Ft Area</span>
+        </div>
+
+        <div class="info-box">
+            <h3>1</h3>
+            <span>Luxury Hall</span>
+        </div>
+
+        <div class="info-box">
+            <h3>1</h3>
+            <span>Modern Kitchen</span>
+        </div>
+
+        <div class="info-box">
+            <h3>3</h3>
+            <span>Bedrooms</span>
+        </div>
+
+    </div>
+
+</section>
+<style>
+    /* ======================================
+   STACKLY PROPERTY SHOWCASE (ISOLATED)
+   ====================================== */
+
+#stackly-showcase{
+background:#0e1117;
+padding:120px 20px 100px;
+position:relative;
+overflow:hidden;
+text-align:center;
+}
+
+/* wrapper */
+#stackly-showcase .showcase-wrapper{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:40px;
+position:relative;
+}
+
+/* left right text */
+#stackly-showcase .showcase-text{
+width:220px;
+color:#cfcfcf;
+letter-spacing:3px;
+font-size:14px;
+opacity:0.8;
+}
+
+#stackly-showcase .left-text{
+text-align:right;
+}
+
+#stackly-showcase .right-text{
+text-align:left;
+}
+
+/* gallery */
+#stackly-showcase .showcase-gallery{
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* images */
+#stackly-showcase .showcase-img{
+width:260px;
+height:360px;
+object-fit:cover;
+border-radius:14px;
+box-shadow:0 20px 60px rgba(0,0,0,0.6);
+transition:0.5s;
+}
+
+/* center image */
+#stackly-showcase .center{
+width:320px;
+height:420px;
+z-index:2;
+}
+
+/* side images */
+#stackly-showcase .left{
+transform:translateX(-60px) scale(0.9);
+opacity:0.8;
+}
+
+#stackly-showcase .right{
+transform:translateX(60px) scale(0.9);
+opacity:0.8;
+}
+
+/* hover effect */
+#stackly-showcase .showcase-img:hover{
+transform:scale(1.05);
+opacity:1;
+}
+
+/* PROPERTY INFO */
+
+#stackly-showcase .property-info{
+margin-top:80px;
+display:flex;
+justify-content:center;
+gap:50px;
+flex-wrap:wrap;
+}
+
+#stackly-showcase .info-box{
+color:white;
+text-align:center;
+}
+
+#stackly-showcase .info-box h3{
+font-size:32px;
+color:#f7c873;
+}
+
+#stackly-showcase .info-box span{
+font-size:14px;
+opacity:0.85;
+letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+#stackly-showcase .showcase-wrapper{
+flex-direction:column;
+gap:25px;
+}
+
+#stackly-showcase .showcase-text{
+display:none;
+}
+
+#stackly-showcase .center{
+width:90%;
+height:360px;
+}
+
+#stackly-showcase .left,
+#stackly-showcase .right{
+display:none;
+}
+
+#stackly-showcase .property-info{
+gap:30px;
+}
+
+}
+
+</style>
+<!-- ================= SERVICES SECTION ================= -->
+
+<section id="stackly-services">
+
+    <div class="services-container">
+
+        <!-- LEFT CONTENT -->
+        <div class="services-text">
+
+            <h2 class="services-title">See what we offer<br>and how it works</h2>
+
+            <div class="service-box">
+                <h3>Property Selection</h3>
+
+                <p>
+                Our agents provide a curated list of verified properties.
+                Includes HD photos, 3D virtual tours and scheduled site visits
+                so you can confidently choose your future home.
+                </p>
+
+                <a href="404.html" class="consult-btn">Get Consultation</a>
+            </div>
+
+        </div>
+
+        <!-- RIGHT IMAGE -->
+        <div class="services-image">
+            <img src="home12.webp" alt="Modern House">
+        </div>
+
+    </div>
+
+</section>
+<style>
+    /* ======================================
+   STACKLY SERVICES (HOW IT WORKS)
+   ====================================== */
+
+#stackly-services{
+background:#f3f3f3;
+padding:120px 20px;
+}
+
+/* container */
+#stackly-services .services-container{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+/* title */
+#stackly-services .services-title{
+font-size:48px;
+font-weight:600;
+line-height:1.2;
+margin-bottom:40px;
+color:#111;
+}
+
+/* service box */
+#stackly-services .service-box h3{
+font-size:28px;
+margin-bottom:12px;
+color:#222;
+}
+
+#stackly-services .service-box p{
+color:#555;
+line-height:1.7;
+margin-bottom:25px;
+max-width:420px;
+}
+
+/* button */
+#stackly-services .consult-btn{
+display:inline-block;
+padding:12px 26px;
+border:1.8px solid #111;
+text-decoration:none;
+color:#111;
+font-weight:500;
+transition:0.35s;
+}
+
+#stackly-services .consult-btn:hover{
+background:#111;
+color:white;
+transform:translateY(-3px);
+}
+
+/* image */
+#stackly-services .services-image img{
+width:100%;
+border-radius:12px;
+box-shadow:0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:900px){
+
+#stackly-services .services-container{
+grid-template-columns:1fr;
+gap:40px;
+text-align:center;
+}
+
+#stackly-services .services-title{
+font-size:32px;
+}
+
+#stackly-services .service-box p{
+margin:auto auto 25px;
+}
+
+}
+
+</style>
+<!-- ================= NEW PROPERTIES ================= -->
+
+<section id="stackly-properties">
+
+    <h2 class="properties-heading">New Properties</h2>
+
+    <div class="properties-grid">
+
+        <!-- CARD 1 -->
+        <div class="property-card">
+            <div class="property-img">
+                <img src="home13.webp">
+            </div>
+            <div class="prophome13.webperty-info">
+                <h3>Serenity Villa</h3>
+                <span class="price">$340,000</span>
+                <p>USA / California</p>
+
+                <div class="property-buttons">
+                    <a href="404.html" class="buy-btn">Buy Now</a>
+                    <a href="404.html" class="details-btn">Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="property-card">
+            <div class="property-img">
+                <img src="home1.webp">
+            </div>
+            <div class="property-info">
+                <h3>Island Retreat</h3>
+                <span class="price">$220,000</span>
+                <p>Bahamas</p>
+
+                <div class="property-buttons">
+                    <a href="404.html" class="buy-btn">Buy Now</a>
+                    <a href="404.html" class="details-btn">Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="property-card">
+            <div class="property-img">
+                <img src="home3.webp">
+            </div>
+            <div class="property-info">
+                <h3>Mountain Lodge</h3>
+                <span class="price">$500,000</span>
+                <p>Colorado</p>
+
+                <div class="property-buttons">
+                    <a href="404.html" class="buy-btn">Buy Now</a>
+                    <a href="404.html" class="details-btn">Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="property-card">
+            <div class="property-img">
+                <img src="home5.webp">
+            </div>
+            <div class="property-info">
+                <h3>Urban Duplex</h3>
+                <span class="price">$290,000</span>
+                <p>New York</p>
+
+                <div class="property-buttons">
+                    <a href="404.html" class="buy-btn">Buy Now</a>
+                    <a href="404.html" class="details-btn">Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="property-card">
+            <div class="property-img">
+                <img src="home6.webp">
+            </div>
+            <div class="property-info">
+                <h3>Lake View Home</h3>
+                <span class="price">$410,000</span>
+                <p>Canada</p>
+
+                <div class="property-buttons">
+                    <a href="404.html" class="buy-btn">Buy Now</a>
+                    <a href="404.html" class="details-btn">Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="property-card">
+            <div class="property-img">
+                <img src="home8.webp">
+            </div>
+            <div class="property-info">
+                <h3>Modern Glass House</h3>
+                <span class="price">$620,000</span>
+                <p>Los Angeles</p>
+
+                <div class="property-buttons">
+                    <a href="404.html" class="buy-btn">Buy Now</a>
+                    <a href="404.html" class="details-btn">Details</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<style>
+    /* ================= PROPERTIES GRID ================= */
+
+#stackly-properties{
+padding:120px 20px;
+background:#f6f7f9;
+text-align:center;
+}
+
+.properties-heading{
+font-size:42px;
+margin-bottom:60px;
+}
+
+/* grid */
+.properties-grid{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+/* card */
+.property-card{
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 15px 40px rgba(0,0,0,0.12);
+opacity:0;
+transform:translateY(60px);
+transition:0.6s;
+}
+
+/* reveal active */
+.property-card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* image */
+.property-img{
+overflow:hidden;
+height:220px;
+}
+
+.property-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:0.6s;
+}
+
+/* ZOOM EFFECT */
+.property-card:hover img{
+transform:scale(1.15);
+}
+
+/* info */
+.property-info{
+padding:18px;
+text-align:left;
+}
+
+.price{
+float:right;
+color:#e0a43c;
+font-weight:600;
+}
+
+.property-info p{
+color:#666;
+margin:8px 0 18px;
+}
+
+/* buttons */
+.property-buttons{
+display:flex;
+gap:10px;
+}
+
+.buy-btn{
+flex:1;
+text-align:center;
+padding:10px;
+background:#111;
+color:white;
+text-decoration:none;
+border-radius:6px;
+transition:0.3s;
+}
+
+.buy-btn:hover{
+background:#e0a43c;
+}
+
+.details-btn{
+flex:1;
+text-align:center;
+padding:10px;
+border:1px solid #111;
+color:#111;
+text-decoration:none;
+border-radius:6px;
+transition:0.3s;
+}
+
+.details-btn:hover{
+background:#111;
+color:white;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+.properties-grid{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media(max-width:600px){
+.properties-grid{
+grid-template-columns:1fr;
+}
+}
+
+</style>
+<script>
+
+const cards = document.querySelectorAll(".property-card");
+
+const reveal = () => {
+    const trigger = window.innerHeight * 0.85;
+
+    cards.forEach(card=>{
+        const top = card.getBoundingClientRect().top;
+
+        if(top < trigger){
+            card.classList.add("show");
+        }
+    });
+};
+
+window.addEventListener("scroll",reveal);
+reveal();
+
+</script>
+<!-- ================= EXPERT AGENTS ================= -->
+
+<!-- ================= EXPERT AGENTS ================= -->
+
+<section id="stackly-agents">
+
+<h2 class="agents-title">Expert Agents</h2>
+
+<div class="agents-grid">
+
+<!-- AGENT 1 -->
+<div class="agent-card">
+    <div class="agent-img">
+        <img src="hr1.webp" alt="">
+        <div class="agent-social">
+            <a href="404.html" class="social-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.6V12h2.6V9.7c0-2.6 1.6-4 3.9-4 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+            </a>
+            <a href="404.html" class="social-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3A4.7 4.7 0 1 1 7.3 12 4.7 4.7 0 0 1 12 7.3zm5.3-1.6a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1zM12 9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg>
+            </a>
+            <a href="404.html" class="social-icon">
+                <svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.3 2.4 4.3 5.5v6.1zM5.3 7.4A2.1 2.1 0 1 1 7.4 5.3 2.1 2.1 0 0 1 5.3 7.4zM7.1 20.4H3.5V9h3.6z"/></svg>
+            </a>
+        </div>
+    </div>
+    <div class="agent-info">
+        <h3>Priya Sharma</h3>
+        <span>Real Estate Agent</span>
+        <p class="rating">★ 5.0 (120 reviews)</p>
+        <div class="call-box">+91 98765 43210</div>
+    </div>
+</div>
+
+<!-- AGENT 2 -->
+<div class="agent-card">
+    <div class="agent-img">
+        <img src="hr2.webp" alt="">
+        <div class="agent-social">
+            <a href="404.html" class="social-icon"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.6V12h2.6V9.7c0-2.6 1.6-4 3.9-4 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+            <a href="404.html" class="social-icon"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3A4.7 4.7 0 1 1 7.3 12 4.7 4.7 0 0 1 12 7.3zm5.3-1.6a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1zM12 9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg></a>
+            <a href="404.html" class="social-icon"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.3 2.4 4.3 5.5v6.1zM5.3 7.4A2.1 2.1 0 1 1 7.4 5.3 2.1 2.1 0 0 1 5.3 7.4zM7.1 20.4H3.5V9h3.6z"/></svg></a>
+        </div>
+    </div>
+    <div class="agent-info">
+        <h3>Riya Verma</h3>
+        <span>Property Consultant</span>
+        <p class="rating">★ 4.9 (98 reviews)</p>
+        <div class="call-box">+91 91234 56789</div>
+    </div>
+</div>
+
+<!-- AGENT 3 -->
+<div class="agent-card">
+    <div class="agent-img">
+        <img src="hr3.webp" alt="">
+        <div class="agent-social">
+            <a href="404.html" class="social-icon"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.6V12h2.6V9.7c0-2.6 1.6-4 3.9-4 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+            <a href="404.html" class="social-icon"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3A4.7 4.7 0 1 1 7.3 12 4.7 4.7 0 0 1 12 7.3zm5.3-1.6a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1zM12 9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg></a>
+            <a href="404.html" class="social-icon"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.3 2.4 4.3 5.5v6.1zM5.3 7.4A2.1 2.1 0 1 1 7.4 5.3 2.1 2.1 0 0 1 5.3 7.4zM7.1 20.4H3.5V9h3.6z"/></svg></a>
+        </div>
+    </div>
+    <div class="agent-info">
+        <h3>Ananya Reddy</h3>
+        <span>Luxury Home Broker</span>
+        <p class="rating">★ 4.8 (88 reviews)</p>
+        <div class="call-box">+91 99887 66554</div>
+    </div>
+</div>
+
+<!-- AGENT 4 -->
+<div class="agent-card">
+    <div class="agent-img">
+        <img src="hr4webp.avif" alt="">
+        <div class="agent-social">
+            <a href="404.html" class="social-icon"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.6V12h2.6V9.7c0-2.6 1.6-4 3.9-4 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+            <a href="404.html" class="social-icon"><svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3A4.7 4.7 0 1 1 7.3 12 4.7 4.7 0 0 1 12 7.3zm5.3-1.6a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1zM12 9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg></a>
+            <a href="404.html" class="social-icon"><svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.3 2.4 4.3 5.5v6.1zM5.3 7.4A2.1 2.1 0 1 1 7.4 5.3 2.1 2.1 0 0 1 5.3 7.4zM7.1 20.4H3.5V9h3.6z"/></svg></a>
+        </div>
+    </div>
+    <div class="agent-info">
+        <h3>Arjun Mehta</h3>
+        <span>Commercial Specialist</span>
+        <p class="rating">★ 4.7 (76 reviews)</p>
+        <div class="call-box">+91 90123 45678</div>
+    </div>
+</div>
+
+</div>
+</section>
+<style>
+    #stackly-agents{
+background:#f3f4f7;
+padding:120px 20px;
+text-align:center;
+}
+
+.agents-title{
+font-size:42px;
+margin-bottom:60px;
+}
+
+.agents-grid{
+max-width:1300px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(4,1fr); /* 4 in one line */
+gap:25px;
+}
+
+.agent-card{
+background:white;
+border-radius:14px;
+overflow:hidden;
+box-shadow:0 18px 40px rgba(0,0,0,0.12);
+}
+
+.agent-img{
+position:relative;
+height:250px;
+cursor:pointer;
+}
+
+.agent-img img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.agent-social{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.65);
+display:flex;
+justify-content:center;
+align-items:center;
+gap:15px;
+opacity:0;
+transition:.35s;
+}
+
+.agent-img.active .agent-social{opacity:1;}
+
+.social-icon{
+width:44px;
+height:44px;
+background:#e0a43c;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#111;
+}
+
+.social-icon svg{
+width:18px;height:18px;fill:currentColor;
+}
+
+.agent-info{padding:18px;text-align:left;}
+.rating{color:#e0a43c;margin:8px 0;}
+
+.call-box{
+margin-top:12px;
+padding:10px;
+background:#111;
+color:white;
+border-radius:6px;
+text-align:center;
+}
+
+/* Tablet */
+@media(max-width:1000px){
+.agents-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* Mobile */
+@media(max-width:600px){
+.agents-grid{grid-template-columns:1fr;}
+}
+
+</style>
+<script>
+const agents=document.querySelectorAll(".agent-img");
+
+agents.forEach(card=>{
+card.addEventListener("click",(e)=>{
+e.stopPropagation();
+agents.forEach(c=>c.classList.remove("active"));
+card.classList.add("active");
+});
+});
+
+document.body.addEventListener("click",()=>{
+agents.forEach(c=>c.classList.remove("active"));
+});
+</script>
+<!-- ================= CONTACT FORM ================= -->
+
+<section id="stackly-contact">
+
+    <div class="contact-container">
+
+        <h2 class="contact-title">Stackly Contact Form</h2>
+        <p class="contact-sub">Have a question or want a site visit? Send us a message.</p>
+
+        <form id="contactForm" class="contact-form">
+
+            <div class="form-row">
+                <input type="text" id="name" placeholder="Full Name">
+                <small class="error" id="nameError"></small>
+            </div>
+
+            <div class="form-row">
+                <input type="text" id="phone" placeholder="Phone Number">
+                <small class="error" id="phoneError"></small>
+            </div>
+
+            <div class="form-row">
+                <input type="text" id="email" placeholder="Email Address">
+                <small class="error" id="emailError2"></small>
+            </div>
+
+            <div class="form-row">
+                <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+                <small class="error" id="messageError"></small>
+            </div>
+
+            <button type="submit" class="contact-btn-submit">Send Message</button>
+
+        </form>
+
+    </div>
+
+</section>
+<style>
+    /* ================= CONTACT FORM ================= */
+
+#stackly-contact{
+background:white;
+padding:120px 20px;
+}
+
+.contact-container{
+max-width:650px;
+margin:auto;
+text-align:center;
+}
+
+.contact-title{
+font-size:38px;
+margin-bottom:10px;
+}
+
+.contact-sub{
+color:#666;
+margin-bottom:35px;
+}
+
+/* form */
+.contact-form{
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.form-row{
+text-align:left;
+}
+
+.contact-form input,
+.contact-form textarea{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:15px;
+outline:none;
+transition:.25s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+border-color:#e0a43c;
+box-shadow:0 0 0 2px rgba(224,164,60,.2);
+}
+
+/* button */
+.contact-btn-submit{
+margin-top:10px;
+padding:14px;
+border:none;
+background:#e0a43c;
+color:#111;
+font-weight:600;
+font-size:16px;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
+}
+
+.contact-btn-submit:hover{
+background:#111;
+color:white;
+}
+
+/* error */
+.error{
+color:#ff4d4d;
+font-size:13px;
+display:block;
+margin-top:5px;
+}
+
+/* mobile */
+@media(max-width:600px){
+
+.contact-title{font-size:28px;}
+#stackly-contact{padding:90px 15px;}
+
+}
+
+</style>
+<script>
+
+/* ===== NAME: letters only ===== */
+const nameInput = document.getElementById("name");
+
+nameInput.addEventListener("input", function(){
+    this.value = this.value.replace(/[^A-Za-z\s]/g, '');
+});
+
+
+/* ===== PHONE: digits only + 10 numbers ===== */
+const phoneInput = document.getElementById("phone");
+
+phoneInput.addEventListener("input", function(){
+
+    // remove non digits
+    this.value = this.value.replace(/\D/g,'');
+
+    // limit to 10 digits
+    if(this.value.length > 10){
+        this.value = this.value.slice(0,10);
+    }
+});
+
+</script>
+
+<!-- ================= INVESTMENT SECTION ================= -->
+
+<section id="stackly-invest">
+
+    <div class="invest-top">
+
+        <div class="invest-heading">
+            <h2>Reliable facilities<br>for stable investments</h2>
+        </div>
+
+        <div class="invest-desc">
+            <p>
+            Our assets are not just square meters, it’s an opportunity
+            for your capital to work for you.
+            </p>
+
+            <p>
+            We carefully select the best investment offers
+            for our clients.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- STATISTICS CARDS -->
+    <div class="invest-cards">
+
+        <!-- CARD 1 -->
+        <div class="invest-card">
+            <small>Total return</small>
+            <h3>19%</h3>
+
+            <div class="bars">
+                <span style="height:40%"></span>
+                <span style="height:70%"></span>
+                <span style="height:60%"></span>
+                <span style="height:55%"></span>
+                <span style="height:65%"></span>
+                <span style="height:80%"></span>
+                <span style="height:60%"></span>
+                <span style="height:45%"></span>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="invest-card">
+            <small>Cumulative net cashflow</small>
+            <h3>$820,000</h3>
+
+            <div class="bars">
+                <span style="height:20%"></span>
+                <span style="height:25%"></span>
+                <span style="height:30%"></span>
+                <span style="height:40%"></span>
+                <span style="height:45%"></span>
+                <span style="height:55%"></span>
+                <span style="height:70%"></span>
+                <span style="height:85%"></span>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="invest-card">
+            <small>Average IRR</small>
+            <h3>14%</h3>
+
+            <div class="bars">
+                <span style="height:30%"></span>
+                <span style="height:80%"></span>
+                <span style="height:40%"></span>
+                <span style="height:60%"></span>
+                <span style="height:50%"></span>
+                <span style="height:75%"></span>
+                <span style="height:55%"></span>
+                <span style="height:60%"></span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<style>
+    /* ================= INVESTMENT SECTION ================= */
+
+#stackly-invest{
+background:#f4f4f4;
+padding:120px 20px;
+}
+
+/* top layout */
+#stackly-invest .invest-top{
+max-width:1200px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+gap:60px;
+margin-bottom:70px;
+}
+
+#stackly-invest .invest-heading h2{
+font-size:42px;
+line-height:1.2;
+}
+
+#stackly-invest .invest-desc{
+max-width:420px;
+color:#666;
+line-height:1.7;
+}
+
+/* cards */
+#stackly-invest .invest-cards{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+/* card style */
+#stackly-invest .invest-card{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 15px 35px rgba(0,0,0,0.1);
+}
+
+#stackly-invest .invest-card small{
+color:#888;
+font-size:14px;
+}
+
+#stackly-invest .invest-card h3{
+font-size:32px;
+margin:12px 0 25px;
+}
+
+/* chart bars */
+#stackly-invest .bars{
+display:flex;
+align-items:flex-end;
+gap:8px;
+height:80px;
+}
+
+#stackly-invest .bars span{
+flex:1;
+background:#dcdcdc;
+border-radius:4px;
+transform:scaleY(0);
+transform-origin:bottom;
+animation:growBars 1.5s ease forwards;
+}
+
+#stackly-invest .bars span:nth-child(2){animation-delay:.1s}
+#stackly-invest .bars span:nth-child(3){animation-delay:.2s}
+#stackly-invest .bars span:nth-child(4){animation-delay:.3s}
+#stackly-invest .bars span:nth-child(5){animation-delay:.4s}
+#stackly-invest .bars span:nth-child(6){animation-delay:.5s}
+#stackly-invest .bars span:nth-child(7){animation-delay:.6s}
+#stackly-invest .bars span:nth-child(8){animation-delay:.7s}
+
+@keyframes growBars{
+to{transform:scaleY(1);}
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:900px){
+
+#stackly-invest .invest-top{
+flex-direction:column;
+gap:20px;
+text-align:center;
+}
+
+#stackly-invest .invest-desc{
+max-width:100%;
+}
+
+#stackly-invest .invest-cards{
+grid-template-columns:1fr;
+}
+
+}
+
+
+</style>
+
+<!-- ================= OFFERS SECTION ================= -->
+
+<section id="stackly-offers">
+
+<h2 class="offers-title">Offers for investment</h2>
+
+<div class="offers-list">
+
+<!-- PROPERTY 1 -->
+<div class="offer-item">
+
+    <div class="offer-img">
+        <img src="home13.webp">
+    </div>
+
+    <div class="offer-info">
+        <h3>Azura Villa</h3>
+        <p class="location">Greece / Mykonos</p>
+
+        <div class="features">
+            <span>650 m²</span>
+            <span>2 floors</span>
+            <span>8 beds</span>
+            <span>2 baths</span>
+        </div>
+
+        <p class="desc">
+        More than a residence — a curated living concept. Enjoy private concierge,
+        peaceful courtyards, and custom interiors for daily life.
+        </p>
+
+        <div class="offer-buttons">
+            <a href="404.html" class="book-btn">Book now</a>
+            <a href="404.html" class="brochure-btn">Download brochure</a>
+        </div>
+    </div>
+
+    <div class="offer-price">
+        <h4>$7,000</h4>
+        <small>Invest</small>
+
+        <h5>10%</h5>
+        <small>ROI</small>
+
+        <h3>$11,275</h3>
+        <small>Return</small>
+    </div>
+
+</div>
+
+
+<!-- PROPERTY 2 -->
+<div class="offer-item">
+    <div class="offer-img">
+        <img src="home12.webp">
+    </div>
+
+    <div class="offer-info">
+        <h3>Serenity Harbor</h3>
+        <p class="location">Italy / Tuscany</p>
+
+        <div class="features">
+            <span>550 m²</span>
+            <span>3 floors</span>
+            <span>8 beds</span>
+            <span>3 baths</span>
+        </div>
+
+        <p class="desc">
+        A tranquil retreat set amidst rolling hills, lush gardens and pool.
+        Ideal for relaxation and investment.
+        </p>
+
+        <div class="offer-buttons">
+            <a href="404.html" class="book-btn">Book now</a>
+            <a href="404.html" class="brochure-btn">Download brochure</a>
+        </div>
+    </div>
+
+    <div class="offer-price">
+        <h4>$9,500</h4>
+        <small>Invest</small>
+
+        <h5>12%</h5>
+        <small>ROI</small>
+
+        <h3>$14,500</h3>
+        <small>Return</small>
+    </div>
+</div>
+
+
+<!-- PROPERTY 3 -->
+<div class="offer-item">
+    <div class="offer-img">
+        <img src="home10.webp">
+    </div>
+
+    <div class="offer-info">
+        <h3>Modern Horizon</h3>
+        <p class="location">Dubai / Marina</p>
+
+        <div class="features">
+            <span>480 m²</span>
+            <span>2 floors</span>
+            <span>6 beds</span>
+            <span>3 baths</span>
+        </div>
+
+        <p class="desc">
+        Contemporary luxury with waterfront views and premium finishes.
+        Perfect for long-term investors.
+        </p>
+
+        <div class="offer-buttons">
+            <a href="404.html" class="book-btn">Book now</a>
+            <a href="404.html" class="brochure-btn">Download brochure</a>
+        </div>
+    </div>
+
+    <div class="offer-price">
+        <h4>$12,000</h4>
+        <small>Invest</small>
+
+        <h5>11%</h5>
+        <small>ROI</small>
+
+        <h3>$18,300</h3>
+        <small>Return</small>
+    </div>
+</div>
+
+
+<!-- PROPERTY 4 -->
+<div class="offer-item">
+    <div class="offer-img">
+        <img src="home5.webp">
+    </div>
+
+    <div class="offer-info">
+        <h3>Lakeview Estate</h3>
+        <p class="location">Canada / Ontario</p>
+
+        <div class="features">
+            <span>720 m²</span>
+            <span>2 floors</span>
+            <span>9 beds</span>
+            <span>4 baths</span>
+        </div>
+
+        <p class="desc">
+        Stunning lakeside property surrounded by nature and privacy.
+        Excellent passive income opportunity.
+        </p>
+
+        <div class="offer-buttons">
+            <a href="404.html" class="book-btn">Book now</a>
+            <a href="404.html" class="brochure-btn">Download brochure</a>
+        </div>
+    </div>
+
+    <div class="offer-price">
+        <h4>$15,000</h4>
+        <small>Invest</small>
+
+        <h5>13%</h5>
+        <small>ROI</small>
+
+        <h3>$21,900</h3>
+        <small>Return</small>
+    </div>
+</div>
+
+</div>
+</section>
+<style>
+    /* ================= OFFERS SECTION ================= */
+
+#stackly-offers{
+padding:120px 20px;
+background:#f7f7f7;
+}
+
+#stackly-offers .offers-title{
+max-width:1200px;
+margin:0 auto 50px;
+font-size:38px;
+}
+
+/* list */
+.offers-list{
+max-width:1200px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:40px;
+}
+
+/* item layout */
+.offer-item{
+display:grid;
+grid-template-columns:280px 1fr 180px;
+gap:25px;
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+align-items:center;
+}
+
+/* image */
+.offer-img img{
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:10px;
+}
+
+/* info */
+.offer-info h3{
+margin-bottom:5px;
+}
+
+.location{
+color:#777;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.features{
+display:flex;
+gap:15px;
+font-size:13px;
+color:#666;
+margin-bottom:10px;
+flex-wrap:wrap;
+}
+
+.desc{
+font-size:14px;
+color:#555;
+margin-bottom:15px;
+}
+
+.offer-buttons{
+display:flex;
+gap:10px;
+}
+
+.book-btn{
+background:#111;
+color:white;
+padding:10px 16px;
+text-decoration:none;
+border-radius:6px;
+}
+
+.brochure-btn{
+border:1px solid #111;
+padding:10px 16px;
+text-decoration:none;
+border-radius:6px;
+color:#111;
+}
+
+/* price side */
+.offer-price{
+text-align:right;
+}
+
+.offer-price h4{
+font-size:22px;
+}
+
+.offer-price h5{
+margin-top:15px;
+}
+
+.offer-price h3{
+margin-top:15px;
+font-size:24px;
+color:#e0a43c;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.offer-item{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.offer-price{
+text-align:center;
+}
+
+.offer-buttons{
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.offer-img img{
+height:220px;
+}
+
+}
+
+</style>
+<!-- ================= STACKLY SHOWCASE ================= -->
+<section id="stackly-offers">
+
+<h2 class="offers-title">STACKLY INTERIOR</h2>
+<section id="stackly-showcase">
+
+    <div class="showcase-wrapper">
+
+        <div class="showcase-track">
+
+            <!-- IMAGE 1 -->
+            <div class="showcase-card">
+                <img src="home6.webp" alt="Luxury House">
+               
+            </div>
+
+            <!-- IMAGE 2 -->
+            <div class="showcase-card">
+                <img src="home8.webp" alt="Modern Interior">
+               
+            </div>
+
+            <!-- IMAGE 3 -->
+            <div class="showcase-card">
+                <img src="home10.webp" alt="Calm Space">
+               
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<style>
+    .showcase-wrapper{
+        background-color: #bbb;
+    }
+</style>
+<!-- ================= FAQ SECTION ================= -->
+
+<section id="stackly-faq">
+
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+
+    <div class="faq-container">
+
+        <div class="faq-item active">
+            <div class="faq-question">
+                Do I need to pay full amount before registration?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                No. You only pay the booking advance first. The remaining amount
+                can be paid through bank loan or installment plan before registration.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Can I get a home loan for this property?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Yes. Our properties are approved by major banks. We also help you
+                with documentation and loan approval process.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Is site visit available on weekends?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                Yes, site visits are available all 7 days. You can schedule a visit
+                by contacting our agent or booking online.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What documents are required for booking?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                You need Aadhar card, PAN card, and address proof. For loan,
+                bank statements and salary slips may also be required.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Are there any hidden charges?
+                <span class="faq-icon">+</span>
+            </div>
+            <div class="faq-answer">
+                No hidden charges. All costs including registration, GST and
+                maintenance are explained clearly before booking.
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<style>
+    /* ================= FAQ SECTION ================= */
+
+#stackly-faq{
+background:#ffffff;
+padding:120px 20px;
+}
+
+#stackly-faq .faq-title{
+text-align:center;
+font-size:38px;
+margin-bottom:50px;
+}
+
+#stackly-faq .faq-container{
+max-width:900px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+/* item */
+#stackly-faq .faq-item{
+border:1px solid #e5e5e5;
+border-radius:10px;
+overflow:hidden;
+transition:0.3s;
+}
+
+/* question */
+#stackly-faq .faq-question{
+padding:20px 22px;
+font-size:18px;
+font-weight:500;
+cursor:pointer;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#f8f8f8;
+}
+
+#stackly-faq .faq-icon{
+font-size:24px;
+transition:0.3s;
+}
+
+/* answer */
+#stackly-faq .faq-answer{
+max-height:0;
+overflow:hidden;
+padding:0 22px;
+line-height:1.7;
+color:#555;
+background:white;
+transition:max-height 0.4s ease, padding 0.3s ease;
+}
+
+/* active open */
+#stackly-faq .faq-item.active .faq-answer{
+max-height:200px;
+padding:18px 22px;
+}
+
+#stackly-faq .faq-item.active .faq-icon{
+transform:rotate(45deg);
+}
+
+/* mobile */
+@media(max-width:600px){
+#stackly-faq .faq-question{
+font-size:16px;
+padding:16px;
+}
+}
+
+</style>
+<script>
+
+const faqItems = document.querySelectorAll("#stackly-faq .faq-item");
+
+faqItems.forEach(item=>{
+    const question = item.querySelector(".faq-question");
+
+    question.addEventListener("click",()=>{
+
+        faqItems.forEach(el=>{
+            if(el !== item){
+                el.classList.remove("active");
+            }
+        });
+
+        item.classList.toggle("active");
+    });
+});
+
+</script>
+<!-- ================= SIMPLE HERO ================= -->
+
+<section id="stackly-simple-hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <h1 class="hero-heading">Stackly Home</h1>
+
+        <p class="hero-sub">
+            Premium homes, smart investments and trusted property guidance.
+            We help you find the perfect space for your future.
+        </p>
+
+        <a href="404.html" class="hero-btn">Contact Us</a>
+
+    </div>
+
+</section>
+<style>
+    /* ================= SIMPLE HERO ================= */
+
+#stackly-simple-hero{
+position:relative;
+height:100vh;
+background:url('home9.webp') center/cover no-repeat;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+overflow:hidden;
+}
+
+/* dark overlay */
+#stackly-simple-hero .hero-overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
+}
+
+/* content */
+#stackly-simple-hero .hero-content{
+position:relative;
+max-width:800px;
+padding:20px;
+}
+
+/* typing title */
+#stackly-simple-hero .hero-heading{
+font-size:64px;
+letter-spacing:4px;
+text-transform:uppercase;
+white-space:nowrap;
+overflow:hidden;
+border-right:3px solid #e0a43c;
+width:0;
+margin:auto;
+animation:heroTyping 4s steps(30,end) forwards, heroBlink .7s infinite;
+}
+
+/* blinking cursor */
+@keyframes heroBlink{
+50%{border-color:transparent;}
+}
+
+/* typing effect */
+@keyframes heroTyping{
+to{width:100%;}
+}
+
+/* paragraph */
+#stackly-simple-hero .hero-sub{
+margin-top:25px;
+font-size:18px;
+line-height:1.7;
+opacity:0;
+transform:translateY(30px);
+animation:heroFade 1.6s ease forwards;
+animation-delay:4s;
+}
+
+@keyframes heroFade{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* button */
+#stackly-simple-hero .hero-btn{
+display:inline-block;
+margin-top:35px;
+padding:14px 34px;
+background:#e0a43c;
+color:#111;
+text-decoration:none;
+font-weight:600;
+border-radius:40px;
+transition:.35s;
+opacity:0;
+animation:heroFade 1.6s ease forwards;
+animation-delay:4.5s;
+}
+
+#stackly-simple-hero .hero-btn:hover{
+background:white;
+transform:translateY(-4px);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* mobile */
+@media(max-width:700px){
+
+#stackly-simple-hero .hero-heading{
+font-size:34px;
+white-space:normal;
+border:none;
+animation:heroFade 1.5s forwards;
+width:100%;
+}
+
+#stackly-simple-hero .hero-sub{
+font-size:15px;
+}
+
+}
+
+</style>
+<!-- ================= FOOTER ================= -->
+
+<footer id="stackly-footer">
+
+<div class="footer-container">
+
+    <!-- COLUMN 1 : LOGO + ABOUT -->
+    <div class="footer-col footer-about">
+
+        <img src="stacklylogo (2).webp" class="footer-logo" alt="logo">
+
+        <p>
+        Stackly Real Estate helps families and investors discover premium homes,
+        smart investments and secure property opportunities with trusted guidance
+        and transparent process.
+        </p>
+
+        <div class="footer-social">
+            <a href="404.html">
+                <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.6V12h2.6V9.7c0-2.6 1.6-4 3.9-4 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+            </a>
+
+            <a href="404.html">
+                <svg viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.3A4.7 4.7 0 1 1 7.3 12 4.7 4.7 0 0 1 12 7.3zm5.3-1.6a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1zM12 9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/></svg>
+            </a>
+
+            <a href="404.html">
+                <svg viewBox="0 0 24 24"><path d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.7 3.7 0 0 1 3.3-1.8c3.6 0 4.3 2.4 4.3 5.5v6.1zM5.3 7.4A2.1 2.1 0 1 1 7.4 5.3 2.1 2.1 0 0 1 5.3 7.4zM7.1 20.4H3.5V9h3.6z"/></svg>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- QUICK LINKS -->
+    <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+            <li><a href="404.html">Home</a></li>
+            <li><a href="404.html">Properties</a></li>
+            <li><a href="404.html">Agents</a></li>
+            <li><a href="404.html">Privacy Policy</a></li>
+            <li><a href="404.html">Terms & Conditions</a></li>
+        </ul>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+            <li><a href="404.html">Buy Property</a></li>
+            <li><a href="404.html">Sell Property</a></li>
+            <li><a href="404.html">Rent Apartment</a></li>
+            <li><a href="404.html">Property Investment</a></li>
+            <li><a href="404.html">Home Loan Help</a></li>
+        </ul>
+    </div>
+
+    <!-- CONTACT + SUBSCRIBE -->
+    <div class="footer-col footer-contact">
+
+        <h4>Contact Us</h4>
+
+        <p>📍 Bengaluru, Karnataka, India</p>
+        <p>📞 +91 98765 43210</p>
+        <p>✉️ info@stacklyrealestate.com</p>
+
+        <form class="subscribe-box" id="subscribeForm">
+
+    <input type="email" id="emailInput" placeholder="Enter your email" required>
+
+    <button type="submit" class="subscribe-btn">Join</button>
+
+    <small class="email-error" id="emailError"></small>
+
+</form>
+
+
+    </div>
+
+</div>
+
+<!-- BOTTOM -->
+<div class="footer-bottom">
+    © 2026 Stackly Real Estate. All Rights Reserved.
+</div>
+
+</footer>
+<style>
+    /* ================= FOOTER ================= */
+
+#stackly-footer{
+background:#0b0e13;
+color:#ccc;
+padding:80px 20px 0;
+}
+
+.footer-container{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1.5fr;
+gap:40px;
+}
+
+/* logo */
+.footer-logo{
+width:160px;
+margin-bottom:15px;
+}
+
+/* about text */
+.footer-about p{
+line-height:1.7;
+margin-bottom:20px;
+}
+
+/* social icons */
+.footer-social{
+display:flex;
+gap:12px;
+}
+
+.footer-social a{
+width:38px;
+height:38px;
+background:#1a1f28;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+color:#e0a43c;
+transition:.3s;
+}
+
+.footer-social a svg{
+width:18px;height:18px;fill:currentColor;
+}
+
+.footer-social a:hover{
+background:#e0a43c;
+color:#111;
+transform:translateY(-3px);
+}
+/* email error */
+.email-error{
+color:#ff6b6b;
+font-size:13px;
+display:block;
+margin-top:6px;
+}
+
+/* headings */
+.footer-col h4{
+color:white;
+margin-bottom:15px;
+}
+
+/* lists */
+.footer-col ul{
+list-style:none;
+padding:0;
+}
+
+.footer-col ul li{
+margin-bottom:10px;
+}
+
+.footer-col ul li a{
+color:#bbb;
+text-decoration:none;
+transition:.3s;
+}
+
+.footer-col ul li a:hover{
+color:#e0a43c;
+padding-left:6px;
+}
+
+/* contact */
+.footer-contact p{
+margin-bottom:8px;
+}
+
+/* subscribe */
+.subscribe-box{
+display:flex;
+margin-top:15px;
+}
+
+.subscribe-box input{
+flex:1;
+padding:10px;
+border:none;
+outline:none;
+background:#1a1f28;
+color:white;
+}
+
+.subscribe-btn{
+background:#e0a43c;
+padding:10px 16px;
+color:#111;
+text-decoration:none;
+font-weight:600;
+}
+
+/* bottom bar */
+.footer-bottom{
+text-align:center;
+padding:20px;
+margin-top:60px;
+background:#080a0f;
+color:#888;
+font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.footer-container{
+grid-template-columns:1fr 1fr;
+gap:30px;
+}
+
+}
+
+@media(max-width:600px){
+
+.footer-container{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+.footer-social{
+justify-content:center;
+}
+
+.subscribe-box{
+flex-direction:column;
+gap:10px;
+}
+
+.subscribe-btn{
+text-align:center;
+}
+
+}
+
+</style>
+<script>
+
+const form = document.getElementById("subscribeForm");
+const emailInput = document.getElementById("emailInput");
+const errorText = document.getElementById("emailError");
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const emailValue = emailInput.value.trim();
+
+    // email format check
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if(emailValue === ""){
+        errorText.textContent = "Please enter your email address";
+        return;
+    }
+
+    if(!emailPattern.test(emailValue)){
+        errorText.textContent = "Please enter a valid email";
+        return;
+    }
+
+    // success → go to 404 page
+    errorText.textContent = "";
+    window.location.href = "404.html";
+});
+
+</script>
